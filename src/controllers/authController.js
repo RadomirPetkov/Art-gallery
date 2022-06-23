@@ -1,13 +1,14 @@
 const authController = require(`express`).Router()
 const authService = require(`../services/authService`)
+const { isUser, isGuest } = require(`../middlewares/authMiddleware`)
 
 
-authController.get(`/register`, (req, res) => {
+authController.get(`/register`, isGuest, (req, res) => {
 
     res.render("auth/register")
 })
 
-authController.post(`/register`, async (req, res) => {
+authController.post(`/register`, isGuest, async (req, res) => {
     const { username, password, repeatPassword, adress } = req.body
     if (password !== repeatPassword) {
         return res.render(`auth/register`, { error: "Password doesnt match" })
@@ -22,12 +23,12 @@ authController.post(`/register`, async (req, res) => {
 
 })
 
-authController.get(`/login`, (req, res) => {
+authController.get(`/login`, isGuest, (req, res) => {
 
     res.render("auth/login")
 })
 
-authController.post(`/login`, async (req, res) => {
+authController.post(`/login`, isGuest, async (req, res) => {
     const { username, password } = req.body
     try {
         const user = await authService.login(username, password)
@@ -36,12 +37,12 @@ authController.post(`/login`, async (req, res) => {
             res.redirect(`/`)
         }
     } catch (error) {
-        res.render(`auth/login`, {error})
+        res.render(`auth/login`, { error })
     }
 
 })
 
-authController.get(`/logout`, (req, res) => {
+authController.get(`/logout`, isUser, (req, res) => {
     res.clearCookie(`session`)
     res.redirect(`/`)
 })

@@ -4,6 +4,7 @@ const authController = require(`./src/controllers/authController`)
 
 router.get(`/`, homeController)
 router.use(`/auth`, authController)
+router.get(`/404`, (req, res)=>{res.render(`404`)})
 
 
 

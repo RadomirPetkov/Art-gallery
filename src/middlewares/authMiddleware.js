@@ -14,7 +14,7 @@ exports.auth = async (req, res, next) => {
             res.locals.isUser = true
 
         } else {
-            res.render(`404`)
+            res.redirect(`/404`)
         }
     }
 
