@@ -6,19 +6,20 @@
 
             <!--If there are art publications in the database, show each of them-->
             {{#if publications}}
+            {{#each publications}}
+
             <article class="card-info">
                 <article class="card-info-image">
-                    <img src="./style/img/blog-img14.jpg" alt="art-image">
+                    <img src="{{artUrl}}" alt="art-image">
                 </article>
 
-                {{#each publications}}
                 <article class="card-info-text">
                     <h2>{{title}}</h2>
                     <h3>Certificate of authenticity: {{certificate}}</h3>
                     <a href="/publications/details/{{_id}}" class="details-btn">Details</a>
                 </article>
-                {{/each}}
             </article>
+             {{/each}}
             {{else}}
             <!--If there are still no art publications in the database display:-->
             <article class="no-available-publications">
