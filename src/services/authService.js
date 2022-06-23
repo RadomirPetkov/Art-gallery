@@ -28,6 +28,5 @@ exports.login = async (username, password) =>{
     } else {
         throw (`Your password doesn't match`)
     }
-    return;
 
 }
