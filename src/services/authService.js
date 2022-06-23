@@ -2,7 +2,7 @@ const User = require(`../models/User`)
 const bcrypt = require(`bcrypt`)
 const jwt = require(`jwt-promisify`)
 
-const jwtPrivateKey = `fgasp13vss1cfsdas`
+const {jwtPrivateKey} = require(`../config/commonConst`)
 const saltRounds = 10
 
 exports.register = async (username, password, adress) => {
