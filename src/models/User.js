@@ -12,7 +12,11 @@ const userSchema = new mongoose.Schema({
     adress: {
         type: String,
         required: true
-    }
+    },
+    myPublications:[{
+        type: mongoose.Types.ObjectId,
+        ref: 'Publication'
+    }]
 })
 
 const User = mongoose.model(`User`, userSchema)
