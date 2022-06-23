@@ -9,7 +9,7 @@ const publicationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    artPicture: {
+    artUrl: {
         type: String,
         required: true
     },
