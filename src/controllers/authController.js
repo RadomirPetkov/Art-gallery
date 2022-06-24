@@ -3,6 +3,7 @@ const authService = require(`../services/authService`)
 const { isUser, isGuest } = require(`../middlewares/authMiddleware`)
 
 
+
 authController.get(`/register`, isGuest, (req, res) => {
 
     res.render("auth/register")

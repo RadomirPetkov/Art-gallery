@@ -7,14 +7,15 @@ exports.auth = async (req, res, next) => {
 
 
     if (sessionCookie) {
-        user = await jwt.verify(sessionCookie, jwtPrivateKey)
+        const user = await jwt.verify(sessionCookie, jwtPrivateKey)
 
         if (user) {
             req.user = user
             res.locals.isUser = true
+            res.locals.user = user
 
         } else {
-            res.redirect(`/404`)
+          return  res.redirect(`/404`)
         }
     }
 

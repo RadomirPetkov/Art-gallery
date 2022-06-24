@@ -16,14 +16,14 @@ exports.register = async (username, password, adress) => {
 }
 
 exports.login = async (username, password) =>{
-    const user = await User.findOne({username})
+    const user = await User.findOne({username}).lean()
     if (!user) {
         throw (`Invalid user`)
 
     }
     const isAuth = await bcrypt.compare(password, user.password)
     if(isAuth){
-        const token = jwt.sign({user}, jwtPrivateKey)
+        const token = jwt.sign(user, jwtPrivateKey)
         return token
     } else {
         throw (`Your password doesn't match`)
