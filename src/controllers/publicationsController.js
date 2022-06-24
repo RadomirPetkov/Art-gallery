@@ -62,7 +62,7 @@ publicationsController.get(`/delete/:publicationId`, async (req, res) => {
 
 publicationsController.get(`/share/:publicationId`, async (req, res) => {
     const publicationId = req.params.publicationId
-    const currentUser = req.user.user._id
+    const currentUser = req.user._id
     let currentPublication = await getOne(publicationId)
     currentPublication.userShared.push(currentUser)
     currentPublication.save()
